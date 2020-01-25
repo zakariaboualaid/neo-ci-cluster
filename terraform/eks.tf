@@ -71,14 +71,14 @@ module "eks" {
 
 }
 
-#resource "helm_release" "nginx_ingress" {
-  #name          = "nginx-ingress"
-  #chart         = "stable/nginx-ingress"
-  #version       = "1.24.1"
-  #namespace     = "kube-system"
-  #force_update  = true
+resource "helm_release" "nginx_ingress" {
+  name          = "nginx-ingress"
+  chart         = "stable/nginx-ingress"
+  version       = "1.24.1"
+  namespace     = "kube-system"
+  force_update  = true
 
-  #values = [
-    #file("../helm/nginx_controller.yaml")
-  #]
-#}
+  values = [
+    file("../helm/nginx_controller.yaml")
+  ]
+}
