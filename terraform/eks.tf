@@ -58,7 +58,7 @@ module "eks" {
     "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
   ]
 
-  write_kubeconfig = "false"
+  write_kubeconfig = "true"
 
   map_users = [
     {
