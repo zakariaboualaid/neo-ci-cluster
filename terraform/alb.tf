@@ -18,7 +18,7 @@ module "alb" {
     {
       "name"             								 = "${local.project}-tg-eks"
       "backend_protocol" 								 = "HTTP"
-      "backend_port"     								 = 32080
+      "backend_port"     								 = 30000
       "slow_start"       								 = 0
       "cookie_duration"                  = 86400
       "deregistration_delay"             = 300

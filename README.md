@@ -2,6 +2,20 @@
 
 CI Cluster infrastructure as code for NEO.
 
-What's used :
+Tools
 - EKS
-- JX (maybe)
+- Helm
+- Jenkins X
+
+Monitoring Tools
+- Prometheus
+- Grafana
+
+AWS Resources
+- EKS Cluster : neo-eks
+- EC2 Instance : DevOps Tower (Management Server)
+- S3 Buckets : devops-tower-terraform , neo-ci-cluster-terraform
+- VPC/Subnets/AutoScaling Group/ALB/Route53[zaksnotes.com(personal domain)]
+
+
+
