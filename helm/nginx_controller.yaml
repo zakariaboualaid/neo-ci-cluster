@@ -7,7 +7,7 @@ controller:
   service:
     type: NodePort
     nodePorts:
-      http: 30000
-      https: 30001
+      http: 32300
+      https: 32301
   config:
     use-forwarded-headers: "true"

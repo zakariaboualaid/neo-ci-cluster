@@ -34,5 +34,3 @@ kubectl auth can-i get cm --as="system:serviceaccount:kube-system:tiller" > yes
 #### after
 kubectl auth can-i get cm --as="system:serviceaccount:kube-system:default" > yes
 kubectl auth can-i get cm --as="system:serviceaccount:kube-system:tiller" > yes
-
-

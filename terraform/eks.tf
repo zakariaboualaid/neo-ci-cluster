@@ -27,15 +27,8 @@ module "eks" {
   subnets = module.vpc.private_subnets 
   vpc_id = module.vpc.vpc_id
 
-  worker_groups = [
-    {
-      instance_type = "m4.large"
-      asg_max_size  = 1
-      asg_desired_capacity = 1
-    }
-  ]
-
   workers_group_defaults = {
+	  public_ip = false
     target_group_arns = concat([
       module.alb.target_group_arns[0]
     ])
@@ -44,10 +37,14 @@ module "eks" {
 
   worker_groups_launch_template = [
     {
-      asg_min_size = 1
+			instance_type = "t4.large"
       asg_desired_capacity = 1
+      asg_max_size = 1
+      asg_min_size = 1
       on_demand_base_capacity = 0
       on_demand_percentage_above_base_capacity = 0
+      autoscaling_enabled = false
+      protect_from_scale_in = false
       root_volume_size = 10
     }
   ]
