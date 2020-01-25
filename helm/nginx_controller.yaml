@@ -1,0 +1,13 @@
+controller:
+  kind: DaemonSet
+  livenessProbe:
+    failureThreshold: 10
+  readinessProbe:
+    failureThreshold: 10
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30000
+      https: 30001
+  config:
+    use-forwarded-headers: "true"
