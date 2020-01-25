@@ -1,3 +1,19 @@
+data "aws_eks_cluster" "cluster" {
+  name = module.eks.cluster_id
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.eks.cluster_id
+}
+
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+  load_config_file       = false
+  version                = "~> 1.10"
+}
+
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
   version = "8.1.0"
@@ -10,6 +26,13 @@ module "eks" {
   subnets = module.vpc.private_subnets 
   vpc_id = module.vpc.vpc_id
 
+  worker_groups = [
+    {
+      instance_type = "m4.large"
+      asg_max_size  = 2
+    }
+  ]
+
   workers_group_defaults = {
     target_group_arns = concat([
       module.alb.target_group_arns[0]
@@ -19,7 +42,6 @@ module "eks" {
 
   worker_groups_launch_template = [
     {
-      asg_max_size = 1
       asg_min_size = 1
       asg_desired_capacity = 1
       on_demand_base_capacity = 0
@@ -48,14 +70,14 @@ module "eks" {
 
 }
 
-resource "helm_release" "nginx_ingress" {
-  name          = "nginx-ingress"
-  chart         = "stable/nginx-ingress"
-  version       = "1.24.1"
-  namespace     = "kube-system"
-  force_update  = true
+#resource "helm_release" "nginx_ingress" {
+  #name          = "nginx-ingress"
+  #chart         = "stable/nginx-ingress"
+  #version       = "1.24.1"
+  #namespace     = "kube-system"
+  #force_update  = true
 
-  values = [
-    file("../helm/nginx_controller.yaml")
-  ]
-}
+  #values = [
+    #file("../helm/nginx_controller.yaml")
+  #]
+#}
