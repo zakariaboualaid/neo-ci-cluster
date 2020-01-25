@@ -37,7 +37,7 @@ module "eks" {
 
   worker_groups_launch_template = [
     {
-			instance_type = "t4.large"
+			instance_type = "m4.large"
       asg_desired_capacity = 1
       asg_max_size = 1
       asg_min_size = 1
