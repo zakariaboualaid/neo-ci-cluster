@@ -1,14 +1,14 @@
 module "eks" {
-	source = "terraform-aws-modules/eks/aws"
-	version = "8.1.0"
-	cluster_name = "${local.project}-eks"
+  source = "terraform-aws-modules/eks/aws"
+  version = "8.1.0"
+  cluster_name = "${local.project}-eks"
 
   tags = merge(local.default_tags, {
     "Name" = "${local.project_name}-eks"
   })
 
-	subnets = module.vpc.private_subnets 
-	vpc_id = module.vpc.vpc_id
+  subnets = module.vpc.private_subnets 
+  vpc_id = module.vpc.vpc_id
 
   workers_group_defaults = {
     target_group_arns = concat([
