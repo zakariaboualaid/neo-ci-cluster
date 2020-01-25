@@ -4,7 +4,7 @@ module "eks" {
   cluster_name = "${local.project}-eks"
 
   tags = merge(local.default_tags, {
-    "Name" = "${local.project_name}-eks"
+    "Name" = "${local.project}-eks"
   })
 
   subnets = module.vpc.private_subnets 
