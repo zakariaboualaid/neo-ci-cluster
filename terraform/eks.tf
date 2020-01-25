@@ -11,13 +11,14 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   token                  = data.aws_eks_cluster_auth.cluster.token
   load_config_file       = false
-  version                = "~> 1.10"
+  version                = "~> 1.14"
 }
 
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
   version = "8.1.0"
   cluster_name = "${local.project}-eks"
+	cluster_version = "1.14"
 
   tags = merge(local.default_tags, {
     "Name" = "${local.project}-eks"
