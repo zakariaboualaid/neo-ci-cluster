@@ -1,0 +1,18 @@
+- name: Tasks to download file
+  hosts: all
+  tasks:
+    - name: Download terraform zip
+      get_url:
+        url: https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
+        dest: /home/ec2-user/
+
+    - name: Extract terraform
+      become: yes
+      unarchive:
+        src: /home/ec2-user/0.12.20/terraform_0.12.20_linux_amd64.zip
+        dest: /usr/local/bin/
+
+    - name: Remove terraform zip
+      file:
+        path: /home/ec2-user/0.12.20/terraform_0.12.20_linux_amd64.zip
+        state: absent
