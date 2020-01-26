@@ -15,18 +15,18 @@ module "vpc" {
   single_nat_gateway     = true
 
 	tags = merge(local.default_tags, {
-    "kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
 	})
 
   public_subnet_tags = {
 		Name = "${local.project}-vpc-subnet-public"
-		"kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
+		"kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
   }
 
   private_subnet_tags = {
 		Name = "${local.project}-vpc-subnet-private"
-    "kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"             = "1"
   }
 
