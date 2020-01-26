@@ -22,7 +22,7 @@ Although I am too close to Oracle Cloud at my current position. I have a good re
 - S3 Buckets : devops-tower-terraform , neo-ci-cluster-terraform
 - VPC/Subnets/AutoScaling Group/ALB/Route53 ( zaksnotes.com ) (personal domain name)
 
-#### Security
+### Security
 I made sure to have a unique VPC for NEO and I divided into 6 subnets. 3 publics and 3 privates. The idea is simple; all the pods that don't need access to the internet are on a private subnet. The Load Balancer is sitting outside listening for incoming traffic and forwarding it to our Ingress Controller, to our Pods.
 
 Also I made sure to have security groups between all the components tweaked according to the need.
@@ -45,28 +45,28 @@ helm install stable/grafana --namespace monitoring --set rbac.create=true --set=
 
 helm install stable/prometheus --namespace monitoring --set rbac.create=true
 ```
-V. Monitoring
-Prometheus : http://prometheus.zaksnotes.com/graph
-AlertManager : http://alertmanager.zaksnotes.com/#/alerts
+### Monitoring
+- Prometheus : http://prometheus.zaksnotes.com/graph
+- AlertManager : http://alertmanager.zaksnotes.com/#/alerts
 
-Vi.sualization
-Grafana : http://grafana.zaksnotes.com/d/8Lm1EbyZk/cluster-nodes
+#### Visualization
+- Grafana : http://grafana.zaksnotes.com/d/8Lm1EbyZk/cluster-nodes
 ( username: admin , pass: JymTN4GlAUtkQTZbT0KFC9kuElfHqgThHkg4alxg)
 
-### Setup our Pipelines using JX commands
+#### Setup our Pipelines using JX commands
 
 ```
 jx create env test --branches=test  --namespace=jx-test --promotion=auto
 ```
 the dev environment is the default environment.
 
-III. GitOps
-Jenkins X Test Environment : 
+#### GitOps
+- Jenkins X Test Environment : 
 https://github.com/zakariaboualaid/environment-jx-test
 (By default the environment in Jenkins X is Dev)
 
-IV. CI/CD
-Jenkins X : http://jenkins.jx.zaksnotes.com/ 
+#### CI/CD
+- Jenkins X : http://jenkins.jx.zaksnotes.com/ 
 (username: admin , pass: 3hxJIraAOYi77^R^mCP1)
 
 
