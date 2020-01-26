@@ -12,9 +12,9 @@ Although I am too close to Oracle Cloud at my current position. I have a good re
 - Kubens/Kubectx
 
 #### Monitoring Tools
-. Prometheus
-. AlertManager
-. Grafana
+- Prometheus
+- AlertManager
+- Grafana
 
 #### AWS Resources :
 - EKS Cluster : neo_eks (cluster_name)
