@@ -45,6 +45,13 @@ helm install stable/grafana --namespace monitoring --set rbac.create=true --set=
 
 helm install stable/prometheus --namespace monitoring --set rbac.create=true
 ```
+V. Monitoring
+Prometheus : http://prometheus.zaksnotes.com/graph
+AlertManager : http://alertmanager.zaksnotes.com/#/alerts
+
+Vi.sualization
+Grafana : http://grafana.zaksnotes.com/d/8Lm1EbyZk/cluster-nodes
+( username: admin , pass: JymTN4GlAUtkQTZbT0KFC9kuElfHqgThHkg4alxg)
 
 ### Setup our Pipelines using JX commands
 
@@ -52,6 +59,16 @@ helm install stable/prometheus --namespace monitoring --set rbac.create=true
 jx create env test --branches=test  --namespace=jx-test --promotion=auto
 ```
 the dev environment is the default environment.
+
+III. GitOps
+Jenkins X Test Environment : 
+https://github.com/zakariaboualaid/environment-jx-test
+(By default the environment in Jenkins X is Dev)
+
+IV. CI/CD
+Jenkins X : http://jenkins.jx.zaksnotes.com/ 
+(username: admin , pass: 3hxJIraAOYi77^R^mCP1)
+
 
 ### Known Issues :
 
