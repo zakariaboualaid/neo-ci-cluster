@@ -42,7 +42,6 @@ module "eks" {
       k8s_labels = {
         Environment = "neo"
         GithubOrg   = "zakariaboualaid"
-				Guru = "Zakaria Boualaid"
       }
     }
   }
