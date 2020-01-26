@@ -13,11 +13,10 @@ module "vpc" {
 
   enable_nat_gateway     = true
   single_nat_gateway     = true
-  tags = local.default_tags
 
-  tags = {
+	tags = merge(local.default_tags, {
     "kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
-  }
+	})
 
   public_subnet_tags = {
 		Name = "${local.project}-vpc-subnet-public"
