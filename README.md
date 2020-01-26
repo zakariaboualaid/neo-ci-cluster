@@ -8,15 +8,15 @@ Although I am too close to Oracle Cloud at my current position. I have a good re
 #### Tools
 - EKS, Helm, Jenkins X, Terraform, Ansible
 
-#### Nice Tools
+### Nice Tools
 - Kubens/Kubectx
 
-#### Monitoring Tools
+### Monitoring Tools
 - Prometheus
 - AlertManager
 - Grafana
 
-#### AWS Resources :
+### AWS Resources :
 - EKS Cluster : neo_eks (cluster_name)
 - EC2 Instance : DevOps Tower (Management Server)
 - S3 Buckets : devops-tower-terraform , neo-ci-cluster-terraform
@@ -27,7 +27,7 @@ I made sure to have a unique VPC for NEO and I divided into 6 subnets. 3 publics
 
 Also I made sure to have security groups between all the components tweaked according to the need.
 
-#### The Provisioning of the CI Cluster
+### The Provisioning of the CI Cluster
 
 After provisioning my CI Cluster using Terraform and putting into practice the idea of infrastructure as code. I installed JX to transcend the next level of automation : CI environments.
 
@@ -49,25 +49,25 @@ helm install stable/prometheus --namespace monitoring --set rbac.create=true
 - Prometheus : http://prometheus.zaksnotes.com/graph
 - AlertManager : http://alertmanager.zaksnotes.com/#/alerts
 
-#### Visualization
+### Visualization
 - Grafana : http://grafana.zaksnotes.com/d/8Lm1EbyZk/cluster-nodes
 
 ( username: admin , pass: JymTN4GlAUtkQTZbT0KFC9kuElfHqgThHkg4alxg)
 
-#### Setup our Pipelines using JX commands
+### Setup our Pipelines using JX commands
 
 ```
 jx create env test --branches=test  --namespace=jx-test --promotion=auto
 ```
 the dev environment is the default environment.
 
-#### GitOps
+### GitOps
 - Jenkins X Test Environment : 
 https://github.com/zakariaboualaid/environment-jx-test
 
 (By default the environment in Jenkins X is Dev)
 
-#### CI/CD
+### CI/CD
 - Jenkins X : http://jenkins.jx.zaksnotes.com/ 
 
 (username: admin , pass: 3hxJIraAOYi77^R^mCP1)
