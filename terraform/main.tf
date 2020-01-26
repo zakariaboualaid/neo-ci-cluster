@@ -2,11 +2,6 @@ provider "aws" {
   region = "us-east-2"
 }
 
-provisioner "local-exec" {
-	# Provision kubernetes loadbalancer service
-	command = "kubectl --kubeconfig=${module.eks.kubeconfig} apply -f ../kubectl"
-}
-
 resource "random_pet" "this" {
   length = 2
 }
