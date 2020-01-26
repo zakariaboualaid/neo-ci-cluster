@@ -20,6 +20,7 @@ locals {
   aws_region_azs = ["us-east-2a", "us-east-2b", "us-east-2c"]
   default_tags = {
     Project = local.project
+    PetName = random_pet.this.id
 		Guru = "Zakaria Boualaid"
     Region = "us-east-2"
   }
