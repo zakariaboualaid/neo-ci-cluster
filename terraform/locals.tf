@@ -12,6 +12,7 @@ output "caller_user" {
 
 locals {
   project = "neo"
+	cluster_name = "${local.project}-eks-${random_pet.this.id}"
 	domain_name = "zaksnotes.com"
   vpc_cidr = "10.20.0.0/16"
   vpc_subnet_private_cidrs = ["10.20.4.0/22", "10.20.8.0/22", "10.20.12.0/22"]

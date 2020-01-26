@@ -17,7 +17,7 @@ provider "kubernetes" {
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
   version = "8.1.0"
-  cluster_name = "${local.project}-eks-${random_pet.this.id}"
+  cluster_name = local.cluster_name
 	cluster_version = "1.14"
 
   tags = merge(local.default_tags, {
