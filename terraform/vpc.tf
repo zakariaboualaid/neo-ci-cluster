@@ -10,13 +10,28 @@ module "vpc" {
   enable_dns_hostnames    = true
   enable_dns_support      = true
   map_public_ip_on_launch = false
+
   enable_nat_gateway     = true
   single_nat_gateway     = true
   tags = local.default_tags
 
+  tags = {
+    "kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
+  }
+
+  public_subnet_tags = {
+		Name = "${local.project}-vpc-subnet-public"
+		"kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
+    "kubernetes.io/role/elb"                      = "1"
+  }
+
+  private_subnet_tags = {
+		Name = "${local.project}-vpc-subnet-private"
+    "kubernetes.io/cluster/${local.cluster_name}-${random_pet.this.id}" = "shared"
+    "kubernetes.io/role/internal-elb"             = "1"
+  }
+
   vpc_tags = { Name = "${local.project}-vpc" }
-  public_subnet_tags = { "kubernetes.io/role/elb" = "1", "kubernetes.io/cluster/neo-eks" = "shared", Name = "${local.project}-vpc-subnet-public" }
-  private_subnet_tags = { "kubernetes.io/role/internal-elb" = "1", "kubernetes.io/cluster/neo-eks" = "shared", Name = "${local.project}-vpc-subnet-private" }
   public_route_table_tags = { Name = "${local.project}-vpc-rt-public" }
   private_route_table_tags = { Name = "${local.project}-vpc-rt-private" }
   igw_tags = { Name = "${local.project}-vpc-igw" }
