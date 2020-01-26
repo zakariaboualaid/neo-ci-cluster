@@ -1,7 +1,8 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "2.24.0"
-  name = "${local.project}-vpc"
+  name = "${local.project}-vpc-${random_pet.this.id}"
+
   cidr = local.vpc_cidr
   private_subnets = local.vpc_subnet_private_cidrs
   public_subnets = local.vpc_subnet_public_cidrs
@@ -12,6 +13,7 @@ module "vpc" {
   enable_nat_gateway     = true
   single_nat_gateway     = true
   tags = local.default_tags
+
   vpc_tags = { Name = "${local.project}-vpc" }
   public_subnet_tags = { "kubernetes.io/role/elb" = "1", "kubernetes.io/cluster/neo-eks" = "shared", Name = "${local.project}-vpc-subnet-public" }
   private_subnet_tags = { "kubernetes.io/role/internal-elb" = "1", "kubernetes.io/cluster/neo-eks" = "shared", Name = "${local.project}-vpc-subnet-private" }

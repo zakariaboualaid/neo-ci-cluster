@@ -62,6 +62,6 @@ module "alb" {
   ]
 
   tags = merge(local.default_tags, {
-    "Name" = "${local.project}-alb"
+    "Name" = "${local.project}-nlb"
   })
 }
