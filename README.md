@@ -23,24 +23,26 @@ Although I am too close to Oracle Cloud at my current position. I have a good re
 - VPC/Subnets/AutoScaling Group/ALB/Route53 ( zaksnotes.com ) (personal domain name)
 
 #### Security
-I made sure to have a unique VPC for NEO and I divided into 6 subnets. 3 publics and 3 privates. The idea is simple; all the pods that don't need access to the internet are on a private subnet. The Load Balancer is sitting outside listening for incoming traffic and forwarding it to Ingress Controller, therefore our ELB is between the public subnet.
+I made sure to have a unique VPC for NEO and I divided into 6 subnets. 3 publics and 3 privates. The idea is simple; all the pods that don't need access to the internet are on a private subnet. The Load Balancer is sitting outside listening for incoming traffic and forwarding it to our Ingress Controller, to our Pods.
+
+Also I made sure to have security groups between all the components tweaked according to the need.
 
 #### The Provisioning of the CI Cluster
 
 After provisioning my CI Cluster using Terraform and putting into practice the idea of infrastructure as code. I installed JX to transcend the next level of automation : CI environments.
 
 ```
-jx install --provider=eks --default-environment-prefix=neo --no-default-environments --ingress-deployment=nginx-ingress-controller --ingre
-s-service=ingress-nginx --domain=zaksnotes.com  --docker-registry=617782583250.dkr.ecr.us-east-2.amazonaws.com/neo/development --skip-ingr
+jx install --provider=eks --default-environment-prefix=neo --no-default-environments --ingress-deployment=nginx-ingress-controller --ingress-service=ingress-nginx --domain=zaksnotes.com  --docker-registry=617782583250.dkr.ecr.us-east-2.amazonaws.com --skip-ingr
 ss --ingress-namespace=ingress-nginx
 ```
 
 Oh and yes, after my Terraform apply I run a playbook remotely to install ingress controller using Ansible. Ingress Controller is quiet important to setup before moving to JX.
 
-### Continue with Helm
+### Continuing with Helm
 
 ```
 helm install stable/grafana --namespace monitoring --set rbac.create=true --set=ingress.enabled=True,ingress.hosts={grafana.zaksnotes.com},persistent_enabled=true
+
 helm install stable/prometheus --namespace monitoring --set rbac.create=true
 ```
 
