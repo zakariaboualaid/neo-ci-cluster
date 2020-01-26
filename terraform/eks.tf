@@ -27,35 +27,25 @@ module "eks" {
   subnets = module.vpc.private_subnets 
   vpc_id = module.vpc.vpc_id
 
-  workers_group_defaults = {
-	  public_ip = false
-    target_group_arns = concat([
-      module.alb.target_group_arns[0]
-    ])
-    subnets = module.vpc.private_subnets
+  node_groups_defaults = {
+    ami_type  = "AL2_x86_64"
+    disk_size = 15
   }
 
-  worker_groups_launch_template = [
-    {
-			instance_type = "m4.large"
-      asg_desired_capacity = 1
-      asg_max_size = 1
-      asg_min_size = 1
-      on_demand_base_capacity = 0
-      on_demand_percentage_above_base_capacity = 0
-      autoscaling_enabled = false
-      protect_from_scale_in = false
-      root_volume_size = 10
+  node_groups = {
+    ci_cluster = {
+      desired_capacity = 1
+      max_capacity     = 2
+      min_capacity     = 1
+
+      instance_type = "t3a.xlarge"
+      k8s_labels = {
+        Environment = "neo"
+        GithubOrg   = "zakariaboualaid"
+				Guru = "Zakaria Boualaid"
+      }
     }
-  ]
-
-  worker_additional_security_group_ids = [
-    module.security_group_eks_worker_from_alb.this_security_group_id
-  ]
-
-  workers_additional_policies = [
-    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
-  ]
+  }
 
   write_kubeconfig = "true"
 
