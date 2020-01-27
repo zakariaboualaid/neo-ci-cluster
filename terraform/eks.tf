@@ -57,10 +57,14 @@ module "eks" {
 }
 
 resource "helm_release" "nginx_ingress" {
-  depends_on		= [module.helm]
   name          = "nginx-ingress"
   chart         = "stable/nginx-ingress"
   version       = "1.24.1"
   namespace			= "kube-system"
+
+  set {
+    name = "cluster_role_binding"
+		value = kubernetes_cluster_role_binding.tiller_cluster_role.metadata.0.name
+  }
 }
 
