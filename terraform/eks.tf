@@ -54,13 +54,11 @@ module "eks" {
     }
   ]
 
-	resource "helm_release" "nginx_ingress" {
-    name          = "nginx-ingress"
-    chart         = "stable/nginx-ingress"
-    version       = "1.24.1"
-		namespace			= "ingress-nginx"
-	}
-
 }
 
-
+resource "helm_release" "nginx_ingress" {
+  name          = "nginx-ingress"
+  chart         = "stable/nginx-ingress"
+  version       = "1.24.1"
+  namespace			= "ingress-nginx"
+}
