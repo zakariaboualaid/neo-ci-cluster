@@ -57,8 +57,10 @@ module "eks" {
 }
 
 resource "helm_release" "nginx_ingress" {
+	depends_on		= module.helm
   name          = "nginx-ingress"
   chart         = "stable/nginx-ingress"
   version       = "1.24.1"
-  namespace			= "ingress-nginx"
+  namespace			= "kube-system"
 }
+
