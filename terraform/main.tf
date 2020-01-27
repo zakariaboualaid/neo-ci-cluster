@@ -2,6 +2,9 @@ provider "aws" {
   region = "us-east-2"
 }
 
+provider "helm" {
+}
+
 resource "random_pet" "this" {
   length = 2
 }
