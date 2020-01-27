@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-2"
+}
+
 provider "helm" {
   install_tiller  = true
   service_account = kubernetes_service_account.tiller.metadata.0.name
