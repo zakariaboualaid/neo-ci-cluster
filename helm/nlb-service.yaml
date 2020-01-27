@@ -20,7 +20,9 @@ spec:
     - name: http
       port: 80
       targetPort: http
+      nodePort: 31000
     - name: https
       port: 443
       targetPort: https
+      nodePort: 32000
 
