@@ -4,6 +4,7 @@ provider "aws" {
 
 provider "helm" {
   install_tiller  = true
+	namespace = "default"
 }
 
 resource "random_pet" "this" {
