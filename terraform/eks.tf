@@ -57,6 +57,7 @@ module "eks" {
 }
 
 resource "helm_release" "nginx_ingress" {
+	force_update  = true
   name          = "nginx-ingress"
   chart         = "stable/nginx-ingress"
   version       = "1.24.1"
