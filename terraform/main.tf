@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 provider "helm" {
+  install_tiller  = true
 }
 
 resource "random_pet" "this" {
